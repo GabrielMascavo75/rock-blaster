@@ -4,59 +4,57 @@ Jogo controlado por gestos com a webcam: mire com a palma da mão e feche a mão
 
 ## Requisitos
 
-- **Python 3.12** (testado com 3.12.10). O Python 3.13 ou mais novo **não funciona**, porque o MediaPipe 0.10.21 não tem pacotes para essas versões.
 - **Webcam** funcionando.
 - Windows, Linux ou macOS.
+- **Internet na primeira execução** (para baixar o Python e as bibliotecas).
 
-Para conferir sua versão do Python:
+Não é preciso ter o Python instalado: o script de inicialização cuida de tudo.
+
+## Como rodar (jeito rápido)
+
+### Windows
+
+Dê dois cliques em **`jogar.bat`**.
+
+Se aparecer um aviso azul do Windows ("O Windows protegeu o computador"), clique em **Mais informações → Executar assim mesmo**.
+
+### Linux / macOS
+
+Abra um terminal na pasta do jogo e rode:
 
 ```
-python --version
+chmod +x jogar.sh
+./jogar.sh
 ```
 
-Se aparecer 3.13 ou superior, instale o Python 3.12 em [python.org/downloads](https://www.python.org/downloads/) (procure a versão 3.12.x na lista). No Windows, marque a opção **"Add Python to PATH"** durante a instalação.
+O `chmod` só é necessário na primeira vez.
 
-## Instalação
+### O que o script faz
 
-Abra um terminal na pasta do jogo e siga os passos.
+1. Instala o [uv](https://docs.astral.sh/uv/), um gerenciador de pacotes Python, se ainda não estiver instalado.
+2. Baixa o Python 3.12 automaticamente, sem mexer em outros Pythons que você já tenha.
+3. Instala as bibliotecas listadas em `requirements.txt`.
+4. Abre o jogo.
 
-**1. Crie um ambiente virtual** (isola as bibliotecas do jogo do resto do sistema):
+A **primeira execução demora alguns minutos**, porque o MediaPipe é uma biblioteca grande. Nas próximas vezes, o jogo abre em poucos segundos.
+
+## Instalação manual (alternativa)
+
+Se preferir não usar o script, você precisa do **Python 3.12** (testado com 3.12.10). O Python 3.13 ou mais novo **não funciona**, porque o MediaPipe 0.10.21 não tem pacotes para essas versões. Confira sua versão com `python --version`.
 
 ```
 python -m venv venv
-```
-
-> Se você tiver mais de uma versão do Python instalada no Windows, use `py -3.12 -m venv venv` para garantir que o ambiente seja criado com a 3.12.
-
-**2. Ative o ambiente virtual:**
-
-Windows:
-```
-venv\Scripts\activate
-```
-
-Linux / macOS:
-```
-source venv/bin/activate
-```
-
-Quando estiver ativo, aparece `(venv)` no início da linha do terminal.
-
-**3. Instale as dependências:**
-
-```
+venv\Scripts\activate          (Windows)
+source venv/bin/activate       (Linux / macOS)
 pip install -r requirements.txt
-```
-
-## Como jogar
-
-Com o ambiente virtual ativado, rode:
-
-```
 python rock_blaster.py
 ```
 
-Nas próximas vezes, basta ativar o ambiente virtual (passo 2) e rodar o comando acima.
+> No Windows, se tiver mais de uma versão do Python, use `py -3.12 -m venv venv` para criar o ambiente com a 3.12.
+
+Nas próximas vezes, basta ativar o ambiente virtual e rodar `python rock_blaster.py`.
+
+## Como jogar
 
 ### Menu
 
@@ -100,8 +98,11 @@ A cor da mira mostra o que o jogo está vendo: **verde** = mão aberta, **vermel
 
 ## Solução de problemas
 
-**`No matching distribution found for mediapipe==0.10.21`**
-Sua versão do Python não é compatível. Confira com `python --version` dentro do ambiente virtual e recrie o ambiente com o Python 3.12.
+**O script diz que o `uv` não foi encontrado logo depois de instalá-lo**
+Feche a janela e rode o script de novo. Em alguns sistemas, o terminal só reconhece programas recém-instalados depois de reaberto.
+
+**O script trava ou falha ao baixar**
+Verifique a conexão com a internet. Redes de escola ou empresa às vezes bloqueiam downloads; tente em outra rede.
 
 **`Nao foi possivel acessar a webcam.`**
 Feche outros programas que possam estar usando a câmera (Teams, Zoom, Discord, OBS, navegador). Verifique também se a webcam está conectada e habilitada.
@@ -109,8 +110,11 @@ Feche outros programas que possam estar usando a câmera (Teams, Zoom, Discord, 
 **No macOS a câmera não abre**
 Dê permissão de câmera ao aplicativo que está rodando o jogo (Terminal, iTerm ou sua IDE) em *Ajustes do Sistema → Privacidade e Segurança → Câmera*, e reinicie o terminal.
 
-**`ModuleNotFoundError: No module named 'cv2'` (ou `mediapipe`)**
-O ambiente virtual provavelmente não está ativado. Ative-o (passo 2 da instalação) e rode o jogo de novo.
+**`No matching distribution found for mediapipe==0.10.21`** (instalação manual)
+Sua versão do Python não é compatível. Confira com `python --version` dentro do ambiente virtual e recrie o ambiente com o Python 3.12.
+
+**`ModuleNotFoundError: No module named 'cv2'` (ou `mediapipe`)** (instalação manual)
+O ambiente virtual provavelmente não está ativado. Ative-o e rode o jogo de novo.
 
 **O jogo está lento ou a mira treme muito**
 Melhore a iluminação e feche outros programas pesados. A detecção da mão usa bastante processamento.
