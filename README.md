@@ -118,3 +118,8 @@ O ambiente virtual provavelmente não está ativado. Ative-o e rode o jogo de no
 
 **O jogo está lento ou a mira treme muito**
 Melhore a iluminação e feche outros programas pesados. A detecção da mão usa bastante processamento.
+
+## Vídeo demonstrativo
+
+[Clique aqui para assistir ao vídeo do projeto](https://drive.google.com/file/d/13H6VuPZjz3kinmmvOm-lPdIauKaFFwV1/view?usp=sharing)
+
