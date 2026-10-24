@@ -1,4 +1,5 @@
 # Rock Blaster
+**Feito pelos alunos:** Cauan Lemos Souza, Filipe Valle Moreira, Gabriel Macedo de Araújo Vieira e Guilherme Pinheiro  
 
 Jogo controlado por gestos com a webcam: mire com a palma da mão e feche a mão para atirar nas rochas que caem antes que elas atinjam o chão. Feito em Python com OpenCV e MediaPipe.
 
